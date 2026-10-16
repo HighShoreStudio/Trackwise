@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <!-- niente zoom con il pizzico o il doppio tap: l'app gestisce da sola le dimensioni -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- resizes-visual: su Android la tastiera si sovrappone senza ridimensionare l'app -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, interactive-widget=resizes-visual">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -17,6 +18,8 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      position: fixed; /* su iOS impedisce che la pagina scorra quando si apre la tastiera */
+      inset: 0;
       background: #F2F3F5;
       overscroll-behavior: none;
       -webkit-user-select: none;
@@ -71,9 +74,9 @@
     var buildUrl = "Build";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/8724b4b9b495f393529252508025f959.data.unityweb",
-      frameworkUrl: buildUrl + "/2d4446f359b8fe7f71ca42d6366e3f4a.framework.js.unityweb",
-      codeUrl: buildUrl + "/3c8d7fda2ec5e8aea8d87aacf44cb489.wasm.unityweb",
+      dataUrl: buildUrl + "/7295fd3ae3252a8953c8b149224002d1.data.unityweb",
+      frameworkUrl: buildUrl + "/d306e4d6cd5db340ac596ab688678b71.framework.js.unityweb",
+      codeUrl: buildUrl + "/9ba987f2116cbbd657f68bd014721df3.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "The Crazy Picture",
       productName: "NoteCantiere",
@@ -85,7 +88,7 @@
     };
 
     var script = document.createElement("script");
-    script.src = buildUrl + "/305945228a793be15590f7a8a4a55ec5.loader.js";
+    script.src = buildUrl + "/fa6514de44222037e320fefee31d2ff6.loader.js";
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
         bar.style.width = (100 * progress) + "%";
