@@ -74,9 +74,9 @@
     var buildUrl = "Build";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/61cf4b5b9c386604ec3f7f76a3052354.data",
-      frameworkUrl: buildUrl + "/eb63fd7a75c4372f26db5ab7d7d5807c.framework.js",
-      codeUrl: buildUrl + "/03ff2805f82fa271cfe04b2af6513c34.wasm",
+      dataUrl: buildUrl + "/25cf773334e65acd630823f6b31bd8e5.data.unityweb",
+      frameworkUrl: buildUrl + "/4d01f04b47dfb301af7cecf86a78b91b.framework.js.unityweb",
+      codeUrl: buildUrl + "/c3a84adc15672868b09616e2c75cd38b.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "The Crazy Picture",
       productName: "NoteCantiere",
@@ -98,7 +98,7 @@
     };
 
     var script = document.createElement("script");
-    script.src = buildUrl + "/8373cc47f9a4fdb6db4f5df06f0777d5.loader.js";
+    script.src = buildUrl + "/f2f246c678532c237168d1dce8dae99f.loader.js";
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
         bar.style.width = (100 * progress) + "%";
@@ -113,23 +113,6 @@
     };
     document.body.appendChild(script);
 
-    // ?debug nell'indirizzo: pannello con lo stato della tastiera, leggibile anche sul telefono
-    if (/[?&]debug/.test(location.search)) {
-      var dbg = document.createElement("div");
-      dbg.style.cssText = "position:fixed;left:4px;bottom:4px;z-index:99999;pointer-events:none;" +
-        "font:11px/1.35 monospace;color:#fff;background:rgba(0,0,0,.72);padding:6px 8px;border-radius:6px;white-space:pre";
-      document.body.appendChild(dbg);
-      setInterval(function () {
-        var vv = window.visualViewport, k = window.__NCK, a = document.activeElement;
-        dbg.textContent =
-          "ponte tastiera: " + (k ? "attivo" : "NON attivo") +
-          (k ? "  focus: " + (k.focused ? "si" : "no") : "") + "\n" +
-          "innerHeight: " + window.innerHeight + "  scrollY: " + window.scrollY + "\n" +
-          (vv ? "visual: h " + Math.round(vv.height) + "  offsetTop " + Math.round(vv.offsetTop) + "\n" : "") +
-          "canvas: " + canvas.style.height + " " + (canvas.style.transform || "-") + "\n" +
-          "attivo: " + (a ? a.tagName : "-") + "  input nel DOM: " + document.querySelectorAll("input,textarea").length;
-      }, 250);
-    }
   </script>
 </body>
 </html>
