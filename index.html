@@ -74,9 +74,9 @@
     var buildUrl = "Build";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/f67a29f7c8b2026ec9b08e508d793dd0.data.unityweb",
-      frameworkUrl: buildUrl + "/4d01f04b47dfb301af7cecf86a78b91b.framework.js.unityweb",
-      codeUrl: buildUrl + "/c3a84adc15672868b09616e2c75cd38b.wasm.unityweb",
+      dataUrl: buildUrl + "/022a1a711c9081c7b0602a1b58cbd782.data",
+      frameworkUrl: buildUrl + "/eb63fd7a75c4372f26db5ab7d7d5807c.framework.js",
+      codeUrl: buildUrl + "/03ff2805f82fa271cfe04b2af6513c34.wasm",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "The Crazy Picture",
       productName: "NoteCantiere",
@@ -88,7 +88,7 @@
     };
 
     var script = document.createElement("script");
-    script.src = buildUrl + "/1e18800491373c089e14318045f0f991.loader.js";
+    script.src = buildUrl + "/8373cc47f9a4fdb6db4f5df06f0777d5.loader.js";
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
         bar.style.width = (100 * progress) + "%";
