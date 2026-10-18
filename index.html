@@ -87,13 +87,13 @@
     var buildUrl = "Build";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/f382f62375127306add4dd729af99c13.data.unityweb",
+      dataUrl: buildUrl + "/711dd843b9c14831811c068a826fb88d.data.unityweb",
       frameworkUrl: buildUrl + "/481a283526c3b49dbef33030ca44abba.framework.js.unityweb",
       codeUrl: buildUrl + "/a6b6b6301ab9d375b32902ec30f68007.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "The Crazy Picture",
       productName: "Trackwise",
-      productVersion: "1.2.2",
+      productVersion: "1.2.3",
       // risoluzione piena dello schermo (testi nitidi), limitata a 3x per non pesare sui telefoni
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 3),
       // niente banner di avviso di Unity sopra l'app
@@ -111,7 +111,7 @@
     };
 
     var script = document.createElement("script");
-    script.src = buildUrl + "/cc60130f8bd25ad28f7e93633f01069f.loader.js";
+    script.src = buildUrl + "/93b4cc40c2efbf8e19ecf688844e9471.loader.js";
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
         bar.style.width = (100 * progress) + "%";
