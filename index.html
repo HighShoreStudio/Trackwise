@@ -4,17 +4,25 @@
   <meta charset="utf-8">
   <!-- niente zoom con il pizzico o il doppio tap: l'app gestisce da sola le dimensioni -->
   <!-- resizes-visual: su Android la tastiera si sovrappone senza ridimensionare l'app -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, interactive-widget=resizes-visual">
+  <!-- viewport-fit=cover: lo sfondo dell'app arriva sotto la barra di stato e ai lati del notch;
+       l'interfaccia resta nell'area sicura (letta da env(safe-area-inset-*) in NoteCantiereWeb.jslib) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-visual">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Trackwise">
-  <meta name="theme-color" content="#F2F3F5">
+  <!-- colore aggiornato dall'app secondo il tema (WebPage.cs) -->
+  <meta name="theme-color" content="#FFFFFF">
   <title>Trackwise</title>
   <link rel="icon" type="image/png" href="icon-192.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="manifest" href="manifest.webmanifest">
   <style>
+    /* colori del caricamento: quelli del tema "Dinamico" (predefinito), chiaro o scuro come il sistema */
+    :root { --page: #F1F5F8; --text: #1D3350; --track: #DCE4EB; color-scheme: light dark; }
+    @media (prefers-color-scheme: dark) {
+      :root { --page: #0E1525; --text: #E6EBF3; --track: #2A3953; }
+    }
     html, body {
       margin: 0;
       padding: 0;
@@ -23,7 +31,7 @@
       overflow: hidden;
       position: fixed; /* su iOS impedisce che la pagina scorra quando si apre la tastiera */
       inset: 0;
-      background: #F2F3F5;
+      background: var(--page);
       overscroll-behavior: none;
       -webkit-user-select: none;
       user-select: none;
@@ -39,7 +47,7 @@
       display: block;
       outline: none;
       touch-action: none;
-      background: #F2F3F5;
+      background: var(--page);
     }
     #loader {
       position: fixed;
@@ -50,14 +58,14 @@
       justify-content: center;
       gap: 18px;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #15181E;
-      background: #F2F3F5;
+      color: var(--text);
+      background: var(--page);
       transition: opacity .25s ease;
     }
     #loader h1 { margin: 0; font-size: 22px; font-weight: 700; }
     #loader img { width: 96px; height: 96px; }
-    #loader .track { width: min(240px, 60vw); height: 6px; border-radius: 3px; background: #E1E4E9; overflow: hidden; }
-    #loader .bar { width: 0; height: 100%; border-radius: 3px; background: #F5B700; transition: width .15s linear; }
+    #loader .track { width: min(240px, 60vw); height: 6px; border-radius: 3px; background: var(--track); overflow: hidden; }
+    #loader .bar { width: 0; height: 100%; border-radius: 3px; background: #1AD1B3; transition: width .15s linear; }
     #loader .error { display: none; max-width: 80vw; text-align: center; font-size: 15px; color: #D42A2A; }
   </style>
 </head>
@@ -79,13 +87,13 @@
     var buildUrl = "Build";
     var config = {
       arguments: [],
-      dataUrl: buildUrl + "/707fa3413bf712b99feebe77f2cb3982.data.unityweb",
-      frameworkUrl: buildUrl + "/7e5227f6a7d4a4b29caac3294d08bc65.framework.js.unityweb",
-      codeUrl: buildUrl + "/165d50b9ea720c640d5c34c2c987a514.wasm.unityweb",
+      dataUrl: buildUrl + "/add18a005727ac58bbe3f0579b70270a.data.unityweb",
+      frameworkUrl: buildUrl + "/1ce4132b6b6201a8503cfd91ca36a069.framework.js.unityweb",
+      codeUrl: buildUrl + "/14d0b47d4c7ce76ac78f268f73e8abef.wasm.unityweb",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "The Crazy Picture",
       productName: "Trackwise",
-      productVersion: "0.2.0",
+      productVersion: "1.2.2",
       // risoluzione piena dello schermo (testi nitidi), limitata a 3x per non pesare sui telefoni
       devicePixelRatio: Math.min(window.devicePixelRatio || 1, 3),
       // niente banner di avviso di Unity sopra l'app
@@ -103,7 +111,7 @@
     };
 
     var script = document.createElement("script");
-    script.src = buildUrl + "/8bad9dc4a800c4fda6f08e43fe446769.loader.js";
+    script.src = buildUrl + "/b2786f3241d2a65ee1d7c95a4949ddc6.loader.js";
     script.onload = function () {
       createUnityInstance(canvas, config, function (progress) {
         bar.style.width = (100 * progress) + "%";
